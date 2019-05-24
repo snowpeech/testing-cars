@@ -27,7 +27,131 @@ describe("Driving a Car", function() {
       // restore the environment as it was before
       sandbox.restore();
     });
-    
+    //need to test moveIt turnIt getDirection
+
+    describe("testing moveIt function", function(){
+        describe("moveIt forward facing North", function(){
+            it("should move up 10 px", function(){
+                moveIt(car,NORTH,FORWARD);
+                expect(car.style.top).to.equal('10px');
+                expect(car.style.left).to.equal('20px');
+            });    
+        });
+
+        describe("moveIt reverse facing North", function(){
+            it("should move down 10 px", function(){
+                moveIt(car,NORTH,REVERSE);
+                expect(car.style.top).to.equal('30px');
+                expect(car.style.left).to.equal('20px');
+            });    
+        });
+        describe("moveIt forward facing South", function(){
+            it("should move down 10 px", function(){
+                moveIt(car,SOUTH,FORWARD);
+                expect(car.style.top).to.equal('30px');
+                expect(car.style.left).to.equal('20px');
+            });    
+        });
+
+        describe("moveIt reverse facing South", function(){
+            it("should move up 10 px", function(){
+                moveIt(car,SOUTH,REVERSE);
+                expect(car.style.top).to.equal('10px');
+                expect(car.style.left).to.equal('20px');
+            });    
+        });
+
+        describe("moveIt forward facing East", function(){
+            it("should move left 10 px", function(){
+                moveIt(car,EAST,FORWARD);
+                expect(car.style.top).to.equal('20px');
+                expect(car.style.left).to.equal('30px');
+            });    
+        });
+
+        describe("moveIt reverse facing East", function(){
+            it("should move right 10 px", function(){
+                moveIt(car,EAST,REVERSE);
+                expect(car.style.top).to.equal('20px');
+                expect(car.style.left).to.equal('10px');
+            });    
+        });
+        describe("moveIt forward facing West", function(){
+            it("should move right 10 px", function(){
+                moveIt(car,WEST,FORWARD);
+                expect(car.style.top).to.equal('20px');
+                expect(car.style.left).to.equal('10px');
+            });    
+        });
+
+        describe("moveIt reverse facing West", function(){
+            it("should move right 10 px", function(){
+                moveIt(car,WEST,REVERSE);
+                expect(car.style.top).to.equal('20px');
+                expect(car.style.left).to.equal('30px');
+            });    
+        });
+    });
+
+    describe("testing turnIt function",function(){
+       
+        describe("facing North turning right", function(){
+            it("should change class from North to East",function(){
+                var classes  = "car north";                
+                expect(turnIt(classes, NORTH, RIGHT)).to.equal('car east');
+            });
+        });
+
+        describe("facing North turning left", function(){
+            it("should change class from North to West",function(){
+                var classes  = "car north";                
+                expect(turnIt(classes, NORTH, LEFT)).to.equal('car west');
+            });
+        });
+
+        describe("facing South turning right", function(){
+            it("should change class from North to West",function(){
+                var classes  = "car south";                
+                expect(turnIt(classes, SOUTH, RIGHT)).to.equal('car west');
+            });
+        });
+
+        describe("facing South turning left", function(){
+            it("should change class from North to East",function(){
+                var classes  = "car south";                
+                expect(turnIt(classes, SOUTH, LEFT)).to.equal('car east');
+            });
+        });
+
+        describe("facing East turning right", function(){
+            it("should change class from East to South",function(){
+                var classes  = "car east";                
+                expect(turnIt(classes, EAST, RIGHT)).to.equal('car south');
+            });
+        });
+
+        describe("facing East turning left", function(){
+            it("should change class from East to North",function(){
+                var classes  = "car east";                
+                expect(turnIt(classes, EAST, LEFT)).to.equal('car north');
+            });
+        });
+
+        describe("facing West turning right", function(){
+            it("should change class from West to North",function(){
+                var classes  = "car west";                
+                expect(turnIt(classes, WEST, RIGHT)).to.equal('car north');
+            });
+        });
+
+        describe("facing West turning left", function(){
+            it("should change class from West to South",function(){
+                var classes  = "car west";                
+                expect(turnIt(classes, WEST, LEFT)).to.equal('car south');
+            });
+        });
+    });
+
     describe("Calling Forward",function(){
         describe("while facing East", function(){
             it("should move car from right to left", function() {
@@ -128,6 +252,22 @@ describe("Driving a Car", function() {
     });
 
     describe("Turning Right", function(){
+        describe("while facing North", function(){
+            it("should change direction to East", function(){
+                car.className = "car north";
+                turnRight(car);
+                expect(car.className).to.equal('car east');
+            });
+        });
+
+        describe("while facing South", function(){
+            it("should change direction to West", function(){
+                car.className = "car south";
+                turnRight(car);
+                expect(car.className).to.equal('car west');
+            });
+        });
+        
         describe("while facing East", function(){
             it("should change direction to South", function(){
                 car.className = "car east";
@@ -135,55 +275,50 @@ describe("Driving a Car", function() {
                 expect(car.className).to.equal('car south');
             });
         });
+
+        describe("while facing West", function(){
+            it("should change direction to North", function(){
+                car.className = "car west";
+                turnRight(car);
+                expect(car.className).to.equal('car north');
+            });
+        });
     });
 
+    describe("Turning Left", function(){
+        describe("while facing North", function(){
+            it("should change direction to West", function(){
+                car.className = "car north";
+                turnLeft(car);
+                
+                expect(car.className).to.equal('car west');
+            });
+        });
 
-/// EXAMPLE SYNTAX BELOW
+        describe("while facing South", function(){
+            it("should change direction to East", function(){
+                car.className = "car south";
+                turnLeft(car);
+                expect(car.className).to.equal('car east');
+            });
+        });
 
-//   describe("#greets", function() {
-//     it("should throw if no target is passed in", function() {
-//       expect(function() {
-//         (new Cow()).greets();
-//       }).to.throw(Error);
-//     });
+        describe("while facing East", function(){
+            it("should change direction to North", function(){
+                car.className = "car east";
+                turnLeft(car);
+                expect(car.className).to.equal('car north');
+            });
+        });
 
-//     it("should greet passed target", function() {
-//       var greetings = (new Cow("Kate")).greets("Baby");
-//       expect(greetings).to.equal("Kate greets Baby");
-//     });
-//   });
+        describe("while facing West", function(){
+            it("should change direction to South", function(){
+                car.className = "car west";
+                turnLeft(car);
+                expect(car.className).to.equal('car south');
+            });
+        });
 
-//   describe("#consoleGreets", function() {
-//     it("should throw if no target is passed in", function() {
-//         (new Cow()).consoleGreets();
+    });
 
-//         sinon.assert.notCalled(console.log);
-//         sinon.assert.calledOnce(console.error);
-//         sinon.assert.calledWithExactly(console.error, "missing target");
-//     });
-
-//     it("should greet passed target", function() {
-//       var greetings = (new Cow("Kate")).consoleGreets("Baby");
-
-//       sinon.assert.notCalled(console.error);
-//       sinon.assert.calledOnce(console.log);
-//       sinon.assert.calledWithExactly(console.log, "Kate greets Baby")
-//     });
-//   });
-
-//   describe("#lateGreets", function() {
-//     it("should pass an error if no target is passed", function(done) {
-//       (new Cow()).lateGreets(null, function(err, greetings) {
-//         expect(err).to.be.an.instanceof(Error);
-//         done();
-//       });
-//     });
-
-//     it("should greet passed target after one second", function(done) {
-//       (new Cow("Kate")).lateGreets("Baby", function(err, greetings) {
-//         expect(greetings).to.equal("Kate greets Baby");
-//         done();
-//       });
-//     });
-//   });
-});
+}); //last bracket

@@ -50,9 +50,7 @@ function turnIt(classes, direction, cmd) {
             break;
         case EAST:
             if(cmd == RIGHT) {
-                console.log(classes)
                 newClassesString = classes.replace('east', 'south');
-                console.log(classes)
             }
             else if (cmd == LEFT) {
                 newClassesString = classes.replace("east", 'north');
