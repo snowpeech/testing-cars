@@ -4,6 +4,7 @@ describe("Driving a Car", function() {
 
     let sandbox; //added
     let car;
+    let carElem
 
     beforeEach(function() {
       // create a sandbox
@@ -19,7 +20,7 @@ describe("Driving a Car", function() {
             car.classList = "";
             car.style.top = "20px";
             car.style.left = "20px";
-            car.classList.toggle = function(){};
+
     });
 
     afterEach(function() {
@@ -129,11 +130,9 @@ describe("Driving a Car", function() {
     describe("Turning Right", function(){
         describe("while facing East", function(){
             it("should change direction to South", function(){
-                car.classList = "car east";
-                //turnRight(car);
-                
-                expect(getDirection(car)).to.equal("SOUTH");
-                
+                car.className = "car east";
+                turnRight(car);
+                expect(car.className).to.equal('car south');
             });
         });
     });
