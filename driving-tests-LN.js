@@ -152,6 +152,46 @@ describe("Driving a Car", function() {
         });
     });
 
+    describe("testing getDirection function", function(){
+        describe("get Direction while facing north", function(){
+            it("should return the class of North", function(){
+                car.className = "car north";
+                
+                expect(getDirection(car)).to.equal("NORTH");
+            });
+        });
+        describe("get Direction while facing south", function(){
+            it("should return the class of South", function(){
+                car.className = "car south";                
+                expect(getDirection(car)).to.equal("SOUTH");
+            });
+        });
+        describe("get Direction while facing east", function(){
+            it("should return the class of East", function(){
+                car.className = "car east";                
+                expect(getDirection(car)).to.equal("EAST");
+            });
+        });
+        describe("get Direction while facing west", function(){
+            it("should return the class of West", function(){
+                car.className = "car west";
+                expect(getDirection(car)).to.equal("WEST");
+            });
+        });
+    });
+
+    // function getDirection(car) {
+    //     var classes = car.className;
+    //     var direction = "";
+    //     if(classes.indexOf('north')>0) {direction = NORTH;}
+    //     else if(classes.indexOf('south')>0) {direction = SOUTH;}
+    //     else if(classes.indexOf('east')>0) {direction = EAST;}
+    //     else if(classes.indexOf('west')>0) {direction = WEST;}
+    //     return direction;
+    // }
+
+
+
     describe("Calling Forward",function(){
         describe("while facing East", function(){
             it("should move car from right to left", function() {
